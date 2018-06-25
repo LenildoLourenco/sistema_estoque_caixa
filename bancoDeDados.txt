@@ -1,0 +1,58 @@
+//Banco de dados simples, com os conhecimentos que possuia em 2016 foi oque consegui fazer para implementar esta solução
+//até então não havia estudado banco de dados, normalização e relacionamentos
+
+
+create database sistema_gerenciamento_estoque;
+use sistema_gerenciamento_estoque;
+
+
+
+create table produtos (codigo int not null auto_increment, descricao varchar(50), fornecedor varchar(50), unidade varchar(5), codigo_barras varchar(50), preco_custo
+decimal(10,2), margem_lucro float, preco_venda decimal(10,2), estoque_critico float, quantidade_estoque float default 0, primary key (codigo));
+
+
+
+create table clientes (codigo int not null auto_increment, nome varchar(50), sexo varchar(2), data_nascimento varchar(10), endereco varchar(60),
+numero varchar(10), bairro varchar(50), cidade varchar(50), uf varchar(3), cep varchar(10), telefone varchar(12), celular varchar(13), email varchar(55),
+primary key(codigo));
+
+
+
+create table funcionarios (codigo int not null auto_increment, nome varchar(50), sexo varchar(2), data_nascimento varchar(10), endereco varchar(60), numero varchar(10),
+bairro varchar(50), cidade varchar(50), cep varchar(10), uf varchar(3), telefone varchar(12), celular varchar(13), salario decimal(10,2), cargo varchar(20),
+email varchar(55), primary key(codigo));
+
+
+
+
+create table fornecedores (codigo int not null auto_increment, nome varchar(50), cnpj varchar(20), endereco varchar(60), numero varchar(10), bairro varchar(50),
+cidade varchar(50), cep varchar(10), uf varchar(3), telefone varchar(12), celular varchar(12), email varchar(55), primary key(codigo));
+
+
+create table usuarios (nome varchar(50), login varchar(50) not null, senha varchar(40) not null, acesso_cadastros tinyint default 0, acesso_produtos tinyint default 0,
+acesso_clientes tinyint default 0, acesso_fornecedores tinyint default 0, acesso_funcionarios tinyint default 0, acesso_vendas tinyint default 0,
+acesso_vender tinyint default 0, acesso_financeiro tinyint default 0, acesso_caixa_dia tinyint default 0, 
+acesso_relatorio tinyint default 0, acesso_historico_vendas tinyint default 0, acesso_analitico_vendas tinyint default 0,
+acesso_cadastro_usuario tinyint default 0,primary key (login));
+
+
+
+//inserindo login admin
+insert into usuarios (nome,login,senha,acesso_cadastros, acesso_produtos, acesso_clientes, acesso_fornecedores, acesso_funcionarios, acesso_vendas, acesso_vender,
+acesso_financeiro, acesso_caixa_dia, acesso_relatorio, acesso_historico_vendas, acesso_analitico_vendas, acesso_cadastro_usuario) values ('admin', 'admin', 'admin',
+1,1,1,1,1,1,1,1,1,1,1,1,1);
+
+
+create table caixa (codigo int not null auto_increment, total_vendido decimal(10,2) default 0, total_cartao_credito decimal(10,2) default 0,
+total_cartao_debito decimal(10,2) default 0, total_cheque decimal(10,2) default 0, total_dinheiro decimal (10,2) default 0,
+ retirado_caixa decimal(10,2) default 0, inicio_caixa decimal(10,2) default 0, primary key (codigo));
+
+
+
+//inserindo caixa 1
+insert into caixa () values ();
+
+
+create table vendas (codigo int not null auto_increment, data_venda date, total_unidades float , total_lucro decimal(10,2), total_vendido decimal(10,2),
+primary key (codigo));
+
